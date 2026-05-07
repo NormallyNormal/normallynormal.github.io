@@ -3,94 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Projects</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>NormallyNormal - Projects</title>
     <style>
-        body {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            background-color: #121212;
-            color: white;
-            font-family: 'Oxygen', sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
 
-        .panel {
-            width: 600px;
-            height: 400px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
+        :root {
+            --bg: #f5f5f5;
+            --surface: #ffffff;
+            --border: #d8d8d8;
+            --text: #1c1c1c;
+            --muted: #5f5f5f;
+            --link: #0b57d0;
         }
 
-        .panel::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 0, 127, 0.2);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        body {
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.5;
         }
 
-        .panel:hover::after {
-            opacity: 1;
-            background: linear-gradient(45deg, rgba(255,0,127,0.3), rgba(255,0,127,0));
+        main {
+            width: min(1100px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 32px 0 48px;
         }
 
-        .panel:hover {
-            transform: scale(1.05);
+        header {
+            margin-bottom: 24px;
         }
 
-        .panel-title {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 20px;
+        h1 {
+            font-size: 2rem;
             font-weight: 700;
-            text-align: center;
-            width: 80%;
-         }
+            margin-bottom: 6px;
+        }
+
+        .intro {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .project-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 16px;
+        }
+
+        .project-card {
+            display: grid;
+            grid-template-rows: 200px auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            background: #e9e9e9;
+        }
+
+        .project-content {
+            padding: 16px;
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .project-desc {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .project-link {
+            color: var(--link);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .project-link:hover,
+        .project-link:focus-visible {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            main {
+                width: min(100% - 24px, 1100px);
+                padding-top: 24px;
+            }
+
+            .project-card {
+                grid-template-rows: 180px auto;
+            }
+
+            .project-card img {
+                height: 180px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="panel" style="background-image: url('cattorch.png');" onclick="window.open('https://github.com/NormallyNormal/cattorch', '_blank')">
-        <div class="panel-title">cattorch</div>
-    </div>
-    <div class="panel" style="background-image: url('sponge.png');" onclick="window.open('https://github.com/NormallyNormal/Marchless-Menger-Sponge', '_blank')">
-        <div class="panel-title">Fast Fractal</div>
-    </div>
-    <div class="panel" style="background-image: url('image1.png');" onclick="window.open('https://github.com/NormallyNormal/ASCIIAdventure', '_blank')">
-        <div class="panel-title">ASCII Adventure</div>
-    </div>
-    <div class="panel" style="background-image: url('image2.png');" onclick="window.open('https://github.com/NormallyNormal/VoidWater', '_blank')">
-        <div class="panel-title">Void Water Mod</div>
-    </div>
-    <div class="panel" style="background-image: url('image3.png');" onclick="window.open('https://github.com/NormallyNormal/doorbot', '_blank')">
-        <div class="panel-title">Doorbot</div>
-    </div>
-    <div class="panel" style="background-image: url('image4.png');" onclick="window.open('https://rakthalekk.itch.io/operation-wonderland', '_blank')">
-        <div class="panel-title">Operation: Wonderland</div>
-    </div>
-    <div class="panel" style="background-image: url('image5.png');" onclick="window.open('https://github.com/NormallyNormal/C-Projects', '_blank')">
-        <div class="panel-title">C Projects</div>
-    </div>
+    <main>
+        <header>
+            <h1>NormallyNormal</h1>
+            <p class="intro">Projects and experiments.</p>
+        </header>
+
+        <section class="project-list" aria-label="Projects">
+            <article class="project-card">
+                <img src="cattorch.webp" loading="lazy" alt="cattorch">
+                <div class="project-content">
+                    <h2 class="project-title">cattorch</h2>
+                    <p class="project-desc">Converts neural networks, including CNNs and transformers, into runnable Scratch scripts.</p>
+                    <a class="project-link" href="https://pypi.org/project/cattorch/" target="_blank" rel="noreferrer">Open project</a>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <img src="sponge.webp" loading="lazy" alt="Fast Fractal">
+                <div class="project-content">
+                    <h2 class="project-title">Fast Fractal</h2>
+                    <p class="project-desc">Real-time 3D Menger sponge using a recursive box ray test instead of marching cubes.</p>
+                    <a class="project-link" href="https://github.com/NormallyNormal/Marchless-Menger-Sponge" target="_blank" rel="noreferrer">Open project</a>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <img src="image1.webp" loading="lazy" alt="ASCII Adventure">
+                <div class="project-content">
+                    <h2 class="project-title">ASCII Adventure</h2>
+                    <p class="project-desc">Terminal platformer rendered with ASCII characters and ANSI colors.</p>
+                    <a class="project-link" href="https://github.com/NormallyNormal/ASCIIAdventure" target="_blank" rel="noreferrer">Open project</a>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <img src="image2.webp" loading="lazy" alt="Void Water Mod">
+                <div class="project-content">
+                    <h2 class="project-title">Void Water Mod</h2>
+                    <p class="project-desc">Minecraft NeoForge mod that adds fluid columns fading into the void.</p>
+                    <a class="project-link" href="https://modrinth.com/mod/void-water" target="_blank" rel="noreferrer">Open project</a>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <img src="image3.webp" loading="lazy" alt="Doorbot">
+                <div class="project-content">
+                    <h2 class="project-title">Doorbot</h2>
+                    <p class="project-desc">Raspberry Pi mounted on a door handle for automated entry and remote control.</p>
+                    <a class="project-link" href="https://github.com/NormallyNormal/doorbot" target="_blank" rel="noreferrer">Open project</a>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <img src="image4.webp" loading="lazy" alt="Operation: Wonderland">
+                <div class="project-content">
+                    <h2 class="project-title">Operation: Wonderland</h2>
+                    <p class="project-desc">Pixel art tower defense and combat game published on itch.io.</p>
+                    <a class="project-link" href="https://rakthalekk.itch.io/operation-wonderland" target="_blank" rel="noreferrer">Open project</a>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <img src="image5.webp" loading="lazy" alt="C Projects">
+                <div class="project-content">
+                    <h2 class="project-title">C Projects</h2>
+                    <p class="project-desc">Collection of systems programming projects, including a Mandelbrot set renderer.</p>
+                    <a class="project-link" href="https://github.com/NormallyNormal/C-Projects" target="_blank" rel="noreferrer">Open project</a>
+                </div>
+            </article>
+        </section>
+    </main>
 </body>
 </html>
